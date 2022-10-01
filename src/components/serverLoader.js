@@ -5,8 +5,8 @@ const ServerLoader = () => {
     <div className="d-lg-flex half-1">
       <div
         className="bg order-1 order-md-2 half-2"
-        style={{ backgroundImage: `url(/hackdoze01/hackdoze/Bubble-Background.svg)` }}
-        // style={{ backgroundImage: `url(/bg_1.jpg)` }}
+        // style={{ backgroundImage: `url(/hackdoze01/hackdoze/Bubble-Background.svg)` }}
+        style={{ backgroundImage: `url(/img/bg_1.jpg)` }}
       ></div>
       <div className="contents order-2 order-md-1">
         <div className="container">

@@ -119,16 +119,16 @@ const onChange = (e) =>{
     >
 
       <div className="d-lg-flex half">
-        <div
+        {/* <div
           className="bg order-1 order-md-2 half-2"
-          style={{ backgroundImage: `url(/hackdoze01/hackdoze/Bubble-Background.svg)` }}
-          // style={{ backgroundImage: `url(/bg_1.jpg)` }}
-        ></div>
+          // style={{ backgroundImage: `url(/hackdoze01/hackdoze/Bubble-Background.svg)` }}
+          style={{ backgroundImage: `url(/bg_1.jpg)` }}
+        ></div> */}
         <div className="contents order-2 order-md-1">
           <div className="container">
             <div className="row align-items-center justify-content-center">
               <div className="col-md-7 py-5">
-                <h3 className="text-center mb-5" style={{fontSize:"45px", color:"rgb(252, 72, 72)"}}>HaXtreme Registration</h3>             
+                <h3 className="text-center mb-5" style={{fontSize:"45px", color:"rgb(255, 195, 0)"}}>HaXtreme 1.0v Hackathon Registration</h3>             
                 <Form>
                   <div class="row">
                     <div class="form-group mb-3">
