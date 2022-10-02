@@ -1,10 +1,21 @@
 import "../css/loading.css";
-
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import Formic from "./Formic";
 
 const Loading = () => {
+const [reg, setReg] = useState(false)
+
+
+const onClick = (e)=> {
+    e.preventDefault();
+    setReg(true)
+}
+
   return (
-    <section class="h-100 gradient-form" style={{}}>
+    <>
+    {reg && <Formic/>}
+    {!reg &&
+      <section class="h-100 gradient-form" style={{}}>
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-xl-10">
@@ -32,8 +43,9 @@ const Loading = () => {
                         <button
                           class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                           type="button"
+                          onClick={onClick}
                         >
-                            <Link to={'/form'}>       Register Now</Link>
+                          Register Now
                     
                         </button>
                       </div>
@@ -75,7 +87,9 @@ const Loading = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section> }
+  
+    </>
   );
 };
 

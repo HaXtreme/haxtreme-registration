@@ -204,3 +204,12 @@ h2 {
 }
 
 
+.team-details {
+  background-color: rgba(10, 67, 103, 0.871);
+  padding: 30px;
+}
+
+/* .form-group {
+  padding: 10px;
+  border: 1px rebeccapurple ;
+} */

@@ -1,12 +1,12 @@
 // import { render } from '@testing-library/react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useEffect, useState } from "react";
-// import { boolean } from 'yup/lib/locale';
-// import { Redirect } from "react-dom"
+import { boolean } from "yup/lib/locale";
+import { Redirect } from "react-dom";
 
 import { motion } from "framer-motion";
 
-// import * as Yup from 'yup'
+import * as Yup from "yup";
 
 // import  UserData  from './api';
 // import Loading from "./loading";
@@ -20,7 +20,7 @@ const Formic = () => {
   const [submit, handleSubmit] = useState(true);
   const [error, errorHandler] = useState(false);
   const [server, serverHandler] = useState(false);
-  const [teamCount, setTeamCount] = useState(2);
+  const [teamCount, setTeamCount] = useState(0);
 
   const onChange = (e) => {
     setTeamCount(Number(e.target.value));
@@ -64,29 +64,35 @@ const Formic = () => {
                 member_4: "",
               },
               preferedLanguage: "",
-              secondaryLanguages: "",
+              participation: "",
             }}
             // validationSchema={Yup.object({
-            //   fullName: Yup.string()
-            //     .max(255, 'Must be 15 characters or less')
-            //     .required("Required"),
+            //   teamName: Yup.string()
+            //     .max(255, "Must be 15 characters or less")
+            //     .required("This field is requried"),
+            //   teamLeader: Yup.string()
+            //     .max(255, "Must be 15 characters or less")
+            //     .required("This field is requried"),
+            //   faculty: Yup.string()
+            //     .max(255, "Must be 15 characters or less")
+            //     .required("This field is requried"),
             //   // email: Yup.string()
-            //   //   .email('Invalid email address')
-            //   //   .required('Required'),
+            //   //   .email("Invalid email address")
+            //   //   .required("This field is requried"),
             //   // address: Yup.string()
             //   //   .max(255, "Must be 15 characters or less")
             //   //   .required(),
             //   // phone: Yup.string()
             //   //   .min(10, "Invalid number")
-            //   //   .max(10, 'Must be exactly 10 digits')
+            //   //   .max(10, "Must be exactly 10 digits")
             //   //   .required("This field is requried"),
             //   // whatsApp: Yup.string()
             //   //   .min(10, "Invalid number")
-            //   //   .max(10, 'Must be exactly 10 digits')
+            //   //   .max(10, "Must be exactly 10 digits")
             //   //   .required("This field is requried"),
             //   // alIndex: Yup.string()
             //   //   .max(12, "invalid A/L Index No")
-            //   //   .required("This field is requried")
+            //   //   .required("This field is requried"),
             //   // validation tika methana kara gain mama firest eke withrai karala thiyanne
             // })}
             onSubmit={async (values) => {
@@ -139,6 +145,7 @@ const Formic = () => {
                             <label htmlFor="teamName">Team Name</label>
                             <Field
                               id="teamName"
+                              // required="required"
                               name="teamName"
                               placeholder="Team_Name"
                               class="form-control"
@@ -209,483 +216,485 @@ const Formic = () => {
                             </div>
                           </div>
                         </div>
-                        {teamCount === 2 && (
-                          <div class="mt-5 mb-5">
-                            {" "}
-                            <h2> Team Details</h2>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_1">
-                                    Member 1 Name
+                        <div className="team-details">
+                          {teamCount === 2 && (
+                            <div class="mt-5 mb-5">
+                              {" "}
+                              <h2> Team Details</h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_1">
+                                      Member 1 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_1"
+                                      name="teamMembers.member_1"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_1">
+                                    Member 1 Email
                                   </label>
                                   <Field
-                                    id="teamMembers.member_1"
-                                    name="teamMembers.member_1"
-                                    placeholder="Mr. Jane"
+                                    id="email"
+                                    name="email.member_1"
+                                    placeholder="sample@gmail.com"
+                                    type="email"
+                                    class="form-control"
+                                  />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
+                                </div>
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 1 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_1"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_2">
+                                      Member 2 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_2"
+                                      name="teamMembers.member_2"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_2">
+                                    Member 2 Email
+                                  </label>
+                                  <Field
+                                    id="email"
+                                    name="email.member_2"
+                                    placeholder="sample@gmail.com"
                                     type={"text"}
                                     class="form-control"
                                   />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
                                 </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_1">
-                                  Member 1 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_1"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 1 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_1"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 2 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_2"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_2">
-                                    Member 2 Name
+                          )}
+                          {teamCount === 3 && (
+                            <div class="mt-5 mb-5">
+                              {" "}
+                              <h2> Team Details</h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_1">
+                                      Member 1 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_1"
+                                      name="teamMembers.member_1"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_1">
+                                    Member 1 Email
                                   </label>
                                   <Field
-                                    id="teamMembers.member_2"
-                                    name="teamMembers.member_2"
-                                    placeholder="Mr. Jane"
+                                    id="email"
+                                    name="email.member_1"
+                                    placeholder="sample@gmail.com"
                                     type={"text"}
                                     class="form-control"
                                   />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
                                 </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 1 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_1"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
                                 </div>
                               </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_2">
-                                  Member 2 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_2"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_2">
+                                      Member 2 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_2"
+                                      name="teamMembers.member_2"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
                                 </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 2 whatsApp Number
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_2">
+                                    Member 2 Email
                                   </label>
                                   <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_2"
-                                    placeholder="0770000000"
+                                    id="email"
+                                    name="email.member_2"
+                                    placeholder="sample@gmail.com"
                                     type={"text"}
                                     class="form-control"
                                   />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
                                 </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 2 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_2"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_3">
+                                      Member 3 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_3"
+                                      name="teamMembers.member_3"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_3">
+                                    Member 3 Email
+                                  </label>
+                                  <Field
+                                    id="email"
+                                    name="email.member_3"
+                                    placeholder="sample@gmail.com"
+                                    type={"text"}
+                                    class="form-control"
+                                  />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
+                                </div>
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 3 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_3"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        )}
-                        {teamCount === 3 && (
-                          <div class="mt-5 mb-5">
-                            {" "}
-                            <h2> Team Details</h2>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_1">
-                                    Member 1 Name
+                          )}
+                          {teamCount === 4 && (
+                            <div class="mt-5 mb-5">
+                              {" "}
+                              <h2> Team Details</h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_1">
+                                      Member 1 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_1"
+                                      name="teamMembers.member_1"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_1">
+                                    Member 1 Email
                                   </label>
                                   <Field
-                                    id="teamMembers.member_1"
-                                    name="teamMembers.member_1"
-                                    placeholder="Mr. Jane"
+                                    id="email"
+                                    name="email.member_1"
+                                    placeholder="sample@gmail.com"
                                     type={"text"}
                                     class="form-control"
                                   />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
                                 </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 1 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_1"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
                                 </div>
                               </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_1">
-                                  Member 1 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_1"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_2">
+                                      Member 2 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_2"
+                                      name="teamMembers.member_2"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
                                 </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 1 whatsApp Number
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_2">
+                                    Member 2 Email
                                   </label>
                                   <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_1"
-                                    placeholder="0770000000"
+                                    id="email"
+                                    name="email.member_2"
+                                    placeholder="sample@gmail.com"
                                     type={"text"}
                                     class="form-control"
                                   />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
                                 </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 2 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_2"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_3">
+                                      Member 3 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_3"
+                                      name="teamMembers.member_3"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_3">
+                                    Member 3 Email
+                                  </label>
+                                  <Field
+                                    id="email"
+                                    name="email.member_3"
+                                    placeholder="sample@gmail.com"
+                                    type={"text"}
+                                    class="form-control"
+                                  />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 3 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_3"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="teamMembers.member_4">
+                                      Member 4 Name
+                                    </label>
+                                    <Field
+                                      id="teamMembers.member_4"
+                                      name="teamMembers.member_4"
+                                      placeholder="Mr. Jane"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="teamName" />
+                                  </div>
+                                </div>
+                                <div class="form-group col-lg-6 mb-3">
+                                  <label htmlFor="email.member_4">
+                                    Member 4 Email
+                                  </label>
+                                  <Field
+                                    id="email"
+                                    name="email.member_4"
+                                    placeholder="sample@gmail.com"
+                                    type={"text"}
+                                    class="form-control"
+                                  />
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="email" />
+                                  </div>
+                                </div>
+                                <div class=" mb-3">
+                                  <div class="form-group first">
+                                    <label htmlFor="phone">
+                                      Member 4 whatsApp Number
+                                    </label>
+                                    <Field
+                                      id="phone"
+                                      name="teamMembersPhone.member_4"
+                                      placeholder="0770000000"
+                                      type={"text"}
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div className="text-danger small">
+                                    <ErrorMessage name="phone" />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_2">
-                                    Member 2 Name
-                                  </label>
-                                  <Field
-                                    id="teamMembers.member_2"
-                                    name="teamMembers.member_2"
-                                    placeholder="Mr. Jane"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_2">
-                                  Member 2 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_2"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 2 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_2"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_3">
-                                    Member 3 Name
-                                  </label>
-                                  <Field
-                                    id="teamMembers.member_3"
-                                    name="teamMembers.member_3"
-                                    placeholder="Mr. Jane"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_3">
-                                  Member 3 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_3"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 3 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_3"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        {teamCount === 4 && (
-                          <div class="mt-5 mb-5">
-                            {" "}
-                            <h2> Team Details</h2>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_1">
-                                    Member 1 Name
-                                  </label>
-                                  <Field
-                                    id="teamMembers.member_1"
-                                    name="teamMembers.member_1"
-                                    placeholder="Mr. Jane"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_1">
-                                  Member 1 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_1"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 1 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_1"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_2">
-                                    Member 2 Name
-                                  </label>
-                                  <Field
-                                    id="teamMembers.member_2"
-                                    name="teamMembers.member_2"
-                                    placeholder="Mr. Jane"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_2">
-                                  Member 2 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_2"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 2 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_2"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_3">
-                                    Member 3 Name
-                                  </label>
-                                  <Field
-                                    id="teamMembers.member_3"
-                                    name="teamMembers.member_3"
-                                    placeholder="Mr. Jane"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_3">
-                                  Member 3 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_3"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 3 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_3"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="teamMembers.member_4">
-                                    Member 4 Name
-                                  </label>
-                                  <Field
-                                    id="teamMembers.member_4"
-                                    name="teamMembers.member_4"
-                                    placeholder="Mr. Jane"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                              <div class="form-group col-lg-6 mb-3">
-                                <label htmlFor="email.member_4">
-                                  Member 4 Email
-                                </label>
-                                <Field
-                                  id="email"
-                                  name="email.member_4"
-                                  placeholder="sample@gmail.com"
-                                  type={"text"}
-                                  class="form-control"
-                                />
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="whatsApp" /> */}
-                                </div>
-                              </div>
-                              <div class=" mb-3">
-                                <div class="form-group first">
-                                  <label htmlFor="phone">
-                                    Member 4 whatsApp Number
-                                  </label>
-                                  <Field
-                                    id="phone"
-                                    name="teamMembersPhone.member_4"
-                                    placeholder="0770000000"
-                                    type={"text"}
-                                    class="form-control"
-                                  />
-                                </div>
-                                <div className="text-danger small">
-                                  {/* <ErrorMessage name="phone" /> */}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                          )}
+                        </div>
 
                         <div class="row">
                           <div class="form-group mb-3">
@@ -709,7 +718,7 @@ const Formic = () => {
                             </Field>
                           </div>
                         </div>
-                        <div class="form-group mb-3">
+                        {/* <div class="form-group mb-3">
                           <label htmlFor="address">Index Number</label>
                           <Field
                             id="indexNo"
@@ -720,8 +729,22 @@ const Formic = () => {
                           <div className="text-danger small">
                             <ErrorMessage name="indexN0" />
                           </div>
+                        </div> */}
+                        <div class="form-group mb-3">
+                          <label htmlFor="participate">
+                            Did you participate for Workshops?
+                          </label>
+                          <Field
+                            name="participation"
+                            as="select"
+                            id="participation"
+                            class="form-control"
+                          >
+                            <option selected></option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </Field>
                         </div>
-
                         <div class="form-group">
                           <label htmlFor="preferedLanguage">
                             Prefered Programming Language

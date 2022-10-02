@@ -1,15 +1,8 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
-import Spinner from './components/Spinner';
-
-const form = lazy(() => import('./components/Formic'));
-const app = lazy(() => import('./App'));
 
 // import './fonts/ROCK.TFF';
 // import './fonts/rockB.tff';
@@ -17,18 +10,7 @@ const app = lazy(() => import('./App'));
 
 ReactDOM.render(
   <React.StrictMode>
-
-
-   
-    <BrowserRouter>
-    <Suspense fallback={<Spinner/>}>
-    <Switch>
-    <Route exact path="/" component={app}/>
-    <Route path="/form" component={form} />
-    </Switch>
-     </Suspense>
-    </BrowserRouter>
-   
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
